@@ -1,10 +1,10 @@
-function Login() {
+function Register() {
     return (
         <>
             <section className="p-7">
                 <div className="flex flex-col justify-center items-center">
-                    <div className="w-15 h-15 bg-blue-700 rounded-lg flex justify-center items-center">
-                        <img className="w-8 h-8" src="/supabase-icon.svg" alt="" />
+                    <div className="w-15 h-15 bg-gray-200 rounded-lg flex justify-center items-center">
+                        <img className="w-8 h-8" src="/rocket-launch-icon.svg" alt="" />
                     </div>
                     <h2 className="text-4xl font-bold">Wellcome back</h2>
                     <p className="text-lg text-gray-500 my-4">Please enter your details to sign in</p>
@@ -40,16 +40,16 @@ function Login() {
                 </div>
                 <div>
                     <button className="w-12/12 h-12 bg-with border border-gray-400 font-semibold rounded-lg flex justify-center items-center gap-5">
-                        <img className="w-5 h-5" src="/google-color-icon.svg" alt="register google" />
+                        <img className="w-5 h-5" src="/google-black-icon.svg" alt="register google" />
                         Sign in with google
                     </button>
                 </div>
             </section>
             <p className=" h-12 w-12/12 bg-gray-100 flex justify-center items-center gap-2">
-                Don't have an account? <button className="text-blue-700 font-semibold">Create an account</button>
+                Don't have an account? <button className="text-blue-700 font-semibold">Start free trial</button>
             </p>
         </>
     );
 }
 
-export default Login;
+export default Register;
