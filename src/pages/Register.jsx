@@ -1,7 +1,7 @@
 function Register() {
     return (
         <>
-            <section className="p-7">
+            <section className="p-7 md:px-50 lg:px-80">
                 <div className="flex flex-col justify-center items-center">
                     <div className="w-15 h-15 bg-gray-200 rounded-lg flex justify-center items-center">
                         <img className="w-8 h-8" src="/rocket-launch-icon.svg" alt="" />
