@@ -1,7 +1,22 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+    const { user, logout, darkMode, toggleTheme } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [enabled, setEnabled] = useState(false);
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/");
+        }
+    }, [user]);
+
+    if (!user) {
+        return null;
+    }
 
     return (
         <>
@@ -15,7 +30,7 @@ function Profile() {
                         <div>
                             <img className="w-7 h-7" src="/avatar-icon.svg" alt="" />
                         </div>
-                        <button className="flex items-center gap-1">
+                        <button className="flex items-center gap-1" onClick={logout}>
                             <img className="w-4 h-4" src="/logout-line-icon.svg" alt="" />
                             Log Out
                         </button>
@@ -38,13 +53,13 @@ function Profile() {
                             <input
                                 className=" w-12/12 h-12 bg-with rounded-lg border border-gray-300 px-2 mb-5"
                                 type="text"
-                                placeholder="Full name"
+                                defaultValue={user.name}
                             />
                             <label htmlFor="">Email address</label>
                             <input
                                 className=" w-12/12 h-12 bg-with rounded-lg border border-gray-300 px-2 mb-5"
                                 type="email"
-                                placeholder="example@example.com"
+                                defaultValue={user.email}
                             />
                             <div className="flex justify-end">
                                 <button className="w-35 h-10 bg-blue-700 text-white capitalize rounded-lg">save changes</button>
@@ -62,12 +77,16 @@ function Profile() {
                                     <p className="font-bold capitalize">appearance</p>
                                     <p className="text-gray-500">Switch between light and dark themes</p>
                                 </div>
-                                <div className="w-82 h-14 p-2 flex items-center gap-2 bg-gray-200 rounded-lg lg:w-52 lg:gap-5">
-                                    <button className="flex items-center gap-2 bg-white p-2">
+                                <div className="w-82 h-14 p-1 flex items-center gap-2 bg-gray-200 rounded-lg lg:w-52 lg:gap-5">
+                                    <button
+                                        onClick={() => darkMode && toggleTheme()}
+                                        className={`flex items-center gap-1 bg-white px-1 py-1.5 rounded-md transition-all ${darkMode ? "bg-slate-800 shadow-sm text-blue-400" : "text-gray-500"}`}>
                                         <img className="w-5 h-5" src="/day-sunny-icon.svg" alt="" />
                                         Light
                                     </button>
-                                    <button className="flex items-center gap-2 ">
+                                    <button
+                                        onClick={() => !darkMode && toggleTheme()}
+                                        className={`flex items-center gap-1 px-1 py-1.5 rounded-md transition-all ${darkMode ? "bg-slate-800 shadow-sm text-blue-400" : "text-gray-500"}`}>
                                         <img className="w-5 h-5" src="/moon-icon.svg" alt="" />
                                         Dark
                                     </button>
@@ -130,15 +149,15 @@ function Profile() {
                     </div>
                     <div className="flex flex-col items-center hover:text-blue-700">
                         <img className="w-7 h-7" src="/column-chart-icon.svg" alt="" />
-                        <p className="text-[10px]">Dashboard</p>
+                        <p className="text-[10px]">Analytics</p>
                     </div>
                     <div className="flex flex-col items-center hover:text-blue-700">
                         <img className="w-7 h-7" src="/setting-icon-black.svg" alt="" />
-                        <p className="text-[10px]">Dashboard</p>
+                        <p className="text-[10px]">Settings</p>
                     </div>
                     <div className="flex flex-col items-center hover:text-blue-700">
                         <img className="w-7 h-7" src="/avatar-icon.svg" alt="" />
-                        <p className="text-[10px]">Dashboard</p>
+                        <p className="text-[10px]">Account</p>
                     </div>
                 </footer>
             </main>
