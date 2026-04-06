@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Profile() {
     const { user, logout, darkMode, toggleTheme } = useContext(AuthContext);
@@ -17,7 +17,6 @@ function Profile() {
     if (!user) {
         return null;
     }
-
     return (
         <>
             <main className="bg-gray-100   ">
@@ -28,9 +27,14 @@ function Profile() {
                     </div>
                     <div className="flex items-center gap-3">
                         <div>
-                            <img className="w-7 h-7" src="/avatar-icon.svg" alt="" />
+                            <img className="w-7 h-7" src={user.avatar || "/avatar-icon.svg"} alt={user.name} />
                         </div>
-                        <button className="flex items-center gap-1" onClick={logout}>
+                        <button
+                            className="flex items-center gap-1"
+                            onClick={() => {
+                                logout();
+                                navigate("/");
+                            }}>
                             <img className="w-4 h-4" src="/logout-line-icon.svg" alt="" />
                             Log Out
                         </button>
@@ -38,7 +42,7 @@ function Profile() {
                 </div>
                 <section className="bg-gray-100 p-4 md:px-50 lg:px-10">
                     <div>
-                        <h2 className="text-3xl font-semibold">welcome back, alex</h2>
+                        <h2 className="text-3xl font-semibold">welcome back, {user?.name}</h2>
                         <p className="text-[16px] py-3 text-gray-500">Manege your account setting and preferrence here.</p>
                     </div>
                     <div className="lg:grid lg:grid-cols-2 lg:gap-5">
@@ -62,7 +66,9 @@ function Profile() {
                                 defaultValue={user.email}
                             />
                             <div className="flex justify-end">
-                                <button className="w-35 h-10 bg-blue-700 text-white capitalize rounded-lg">save changes</button>
+                                <Link to="/Profile">
+                                    <button className="w-35 h-10 bg-blue-700 text-white capitalize rounded-lg">save changes</button>
+                                </Link>
                             </div>
                         </form>
                         <div className=" bg-white p-4 border border-gray-300 rounded-lg mt-8 lg:mt-0">

@@ -13,10 +13,11 @@ function App() {
     return (
         <>
             {user && <Header />}
+
             <Routes>
+                <Route path={"/Register"} element={<Register />}></Route>
                 <Route path={"/"} element={<Home />}></Route>
                 <Route path={"/Login"} element={<Login />}></Route>
-                <Route path={"/Register"} element={<Register />}></Route>
                 <Route path={"/Profile"} element={<Profile />}></Route>
             </Routes>
             {user && <Footer />}

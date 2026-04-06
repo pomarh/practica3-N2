@@ -8,18 +8,17 @@ function Home() {
     const { user, login, logout, darkMode, toggleTheme } = useContext(AuthContext);
 
     const darkModelStyle = {
-        backgroundColor: darkMode ? "#222" : "#eee",
+        backgroundColor: darkMode ? "#222" : "#fff",
         color: darkMode ? "white" : "black",
-        height: "auto",
+        height: "100vh",
         textAlign: "center",
-        padding: "20px",
     };
     return (
         <>
             <Header />
-            <main>
-                <div style={darkModelStyle} className="w-full">
-                    <div className="h-10 flex justify-end items-center border rounded-lg w-20">
+            <main style={darkModelStyle} className="h-dvh pt-5 px-5 md:px-20">
+                <div className="w-full">
+                    <div className="h-10 flex justify-end items-center border border-gray-300 rounded-lg w-20">
                         <button onClick={toggleTheme}>{darkMode ? "Dark 🌙" : "Light ☀️"}</button>
                     </div>
 

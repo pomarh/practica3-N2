@@ -8,7 +8,7 @@ export function UserProvider({ children }) {
     const [darkMode, setDrakMode] = useState(false);
 
     // login/logout
-    const login = (userName) => setUser({ name: userName });
+    const login = (userData) => setUser(userData);
     const logout = () => setUser(null);
 
     // funcion darkMode
